@@ -1,0 +1,129 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  /user/register:
+    post:
+      tags:
+        - User Data
+      description: "Endpoint for registering a new user"
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterUserDto"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: integer
+                format: int64
+  /exchange:
+    post:
+      tags:
+        - Exchange money
+      description: "Endpoint for exchanging money"
+      operationId: exchange
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExchangeRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AccountDto"
+  /user/balance:
+    get:
+      tags:
+        - User Data
+      description: "Endpoint for user balance"
+      operationId: getBalance
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AccountUserDto"
+components:
+  schemas:
+    RegisterUserDto:
+      required:
+        - balance
+        - currencyCode
+        - name
+        - surname
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        currencyCode:
+          pattern: PLN
+          type: string
+        balance:
+          type: number
+    ExchangeRequest:
+      type: object
+      properties:
+        fromCurrencyCode:
+          type: string
+          example: PLN
+          enum:
+            - PLN
+            - USD
+        toCurrencyCode:
+          type: string
+          example: USD
+          enum:
+            - PLN
+            - USD
+        amount:
+          type: number
+        userId:
+          type: integer
+          format: int64
+    AccountDto:
+      type: object
+      properties:
+        currencyCode:
+          type: string
+          enum:
+            - PLN
+            - USD
+        balance:
+          type: number
+    AccountUserDto:
+      type: object
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        accounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/AccountDto"
