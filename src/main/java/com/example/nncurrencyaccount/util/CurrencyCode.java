@@ -1,4 +1,4 @@
-package com.example.nncurrencyaccount;
+package com.example.nncurrencyaccount.util;
 
 public enum CurrencyCode {
     PLN,

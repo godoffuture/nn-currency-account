@@ -3,7 +3,6 @@ package com.example.nncurrencyaccount.api;
 import com.example.nncurrencyaccount.api.dto.AccountDto;
 import com.example.nncurrencyaccount.api.dto.ExchangeRequest;
 import com.example.nncurrencyaccount.service.ExchangeServiceImpl;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +18,7 @@ public class ExchangeController {
     private final ExchangeServiceImpl exchangeService;
 
     @PostMapping(path = "/exchange")
-    ResponseEntity<List<AccountDto>> exchange(@Valid  @RequestBody ExchangeRequest exchangeRequest) {
+    ResponseEntity<List<AccountDto>> exchange(@RequestBody ExchangeRequest exchangeRequest) {
         return ResponseEntity.ok(exchangeService.exchangeCurrency(exchangeRequest));
     }
 

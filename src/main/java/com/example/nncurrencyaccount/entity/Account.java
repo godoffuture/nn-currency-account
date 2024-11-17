@@ -1,6 +1,6 @@
 package com.example.nncurrencyaccount.entity;
 
-import com.example.nncurrencyaccount.CurrencyCode;
+import com.example.nncurrencyaccount.util.CurrencyCode;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

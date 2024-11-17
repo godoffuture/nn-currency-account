@@ -1,6 +1,6 @@
 package com.example.nncurrencyaccount.api.dto;
 
-import com.example.nncurrencyaccount.CurrencyCode;
+import com.example.nncurrencyaccount.util.CurrencyCode;
 import com.example.nncurrencyaccount.entity.Account;
 import com.example.nncurrencyaccount.entity.AccountUser;
 import jakarta.validation.constraints.NotBlank;
